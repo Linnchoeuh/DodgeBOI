@@ -1,15 +1,22 @@
+import os
 try:
     import pygame
 except:
-    print("Erreur pygame n'est pas installé.\nPour l'installer voici la marche à suivre:\nPremièrement faites 'windows+r', tapez 'cmd' et appuyer sur entré.\n Nous allons d'abbord vérifier que pip est à jour, entrez la commande si dessous dans l'invite de commande que vous avez ouvert:\npython -m pip install --upgrade pip\nAttendez la fin de l'instalation et entrez ensuite cette commande pour installer pygame:\npip install pygame\n Une fois l'installation terminé vous devriez pouvoir lancer correctement ce programme")
-    input("Appuyez sur entré pour fermer cette fenêtre.")
+    print("Erreur pygame n'est pas installé.")
+    print("Installtion automatique...")
+    os.system("python -m pip install --upgrade pip")
+    os.system("pip install pygame")
+    print("Pip à été mis à jour et pygame a été installé.\nSi le programme ne se lance toujours pas, faite manuellement les installations\nPour installer voici la marche à suivre:\nPremièrement faites 'windows+r', tapez 'cmd' et appuyer sur entré.\n Nous allons d'abbord vérifier que pip est à jour, entrez la commande si dessous dans l'invite de commande que vous avez ouvert:\npython -m pip install --upgrade pip\nAttendez la fin de l'instalation et entrez ensuite cette commande pour installer pygame:\npip install pygame\n Une fois l'installation terminé vous devriez pouvoir lancer correctement ce programme")
+    import pygame
+
+import pygame
 from pygame.locals import *
 import time
 import language
 import random
 import ctypes
 import sys
-import os
+
 
 red = (255, 0, 0)
 green = (0, 255, 0)
@@ -443,6 +450,8 @@ nokey_input = True
 position_of_player = 0
 div_wait = False
 event_waiting = False
+keyboard_input = {27: False, 13: False, 119: False, 115: False, 113: False, 101: False, 257: False, 258: False, 259: False, 107: False, 108: False, 59: False, 32: False}
+                # 27: esc   ,13:return, 119 : z , 115: s    , 113: a    , 101: e    , 257: 1    , 258: 2    , 259: 3    , 107: k    , 108: l    , 59: m    , 32: space
 
 while launched: #Pour fermer la fenêtre
     for event in pygame.event.get():
@@ -827,7 +836,7 @@ while launched: #Pour fermer la fenêtre
             if event_waiting == False:
                 window_surface.blit(move_text, res_pos(525,650))
                 pygame.display.flip()
-            print("Bienvenue sur DodgeBOI 1.0!")
+            print("Bienvenue sur DodgeBOI 1.1!")
         except:
                 print("Erreur, textures(s) manquante(s), réinstallez le programme, si le problème persiste réinstallez pygame voir python.")
                 input()
@@ -835,6 +844,11 @@ while launched: #Pour fermer la fenêtre
         loaded = False
     
     if event_waiting == True:
+        if event.type == pygame.KEYDOWN:
+            keyboard_input[event.key] = True
+        elif event.type == pygame.KEYUP:
+            keyboard_input[event.key] = False
+
         pressed = pygame.mouse.get_pressed()
         x, y = pygame.mouse.get_pos()
 
@@ -1006,7 +1020,7 @@ while launched: #Pour fermer la fenêtre
                     press = 0
                     waiting = 90 * sfr * ((1/fps)/dt)
                     last = 0
-                    speed = 1
+                    speed = 0
                     fallx = res_posx(-2)*sfr
                     fally = res_posy(1)*sfr
                     did = False
@@ -1026,9 +1040,9 @@ while launched: #Pour fermer la fenêtre
 
             window_surface.fill(black)
             if PAUSE < 1:
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_q or input_controller1[9] == True:
+                if keyboard_input[113] == True or input_controller1[9] == True:
                     position_of_player = 1
-                elif event.type == pygame.KEYDOWN and event.key == pygame.K_e or input_controller1[10] == True:
+                elif keyboard_input[101] == True or input_controller1[10] == True:
                     if jumping < 20*sfr+1:
                         position_of_player = 2
                         jumping += 1
@@ -1038,7 +1052,7 @@ while launched: #Pour fermer la fenêtre
                     else:
                         position_of_player = 0
                         jumping = 0
-                elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE or input_controller1[7] == True:
+                elif keyboard_input[32] == True or input_controller1[7] == True:
                     if kick < 5*sfr+1:
                         position_of_player = 3
                         kick += 1
@@ -1053,7 +1067,7 @@ while launched: #Pour fermer la fenêtre
                     jumping = 0
                     kick = 0
 
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_s and position_of_player == 0: #Déplacment vers le bas
+                if keyboard_input[115] == True and position_of_player == 0: #Déplacment vers le bas
                     if player_pos == 2 and press == 0 and block_collide2 == 0:
                         player_pos_y = round((515/1080) * res[1])
                         press = 1
@@ -1062,7 +1076,7 @@ while launched: #Pour fermer la fenêtre
                         player_pos_y = round((875/1080) * res[1])
                         press = 1
                         player_pos = 0
-                elif event.type == pygame.KEYDOWN and event.key == pygame.K_w and position_of_player == 0: #Déplacment vers le haut
+                elif keyboard_input[119] == True and position_of_player == 0: #Déplacment vers le haut
                     if player_pos == 0 and press == 0 and block_collide2 == 0:
                         player_pos_y = round((515/1080) * res[1])
                         press = 1
@@ -1117,11 +1131,11 @@ while launched: #Pour fermer la fenêtre
                     joy_press = 0
 
                 if no_input == True or input_controller1[9] or input_controller1[10]:
-                    if event.type == pygame.KEYDOWN and event.key == pygame.K_KP1 or event.type == pygame.KEYDOWN and event.key == pygame.K_k or input_controller1[8]: # Change la couleur du bandana
+                    if keyboard_input[257] == True or keyboard_input[107] == True or input_controller1[8]: # Change la couleur du bandana
                         color = "red"
-                    elif event.type == pygame.KEYDOWN and event.key == pygame.K_KP2 or event.type == pygame.KEYDOWN and event.key == pygame.K_l or input_controller1[6]:
+                    elif keyboard_input[258] == True or keyboard_input[108] == True or input_controller1[6]:
                         color = "blue"
-                    elif event.type == pygame.KEYDOWN and event.key == pygame.K_KP3 or event.type == pygame.KEYDOWN and event.key == pygame.K_SEMICOLON or input_controller1[5]:
+                    elif keyboard_input[259] == True or keyboard_input[59] == True or input_controller1[5]:
                         color = "yellow"
 
                 if waiting <= 0 or div_wait == True: #générateur 
@@ -1592,12 +1606,12 @@ while launched: #Pour fermer la fenêtre
                     PAUSE = 2
                     menu1_joystick_select = 2
 
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE or input_controller1[12] == True and no_input == True or input_controller1[12] and pause_input == True: #Activer la pause
+                if keyboard_input[27] == True or input_controller1[12] == True and no_input == True or input_controller1[12] and pause_input == True: #Activer la pause
                     PAUSE = 1
                     menu1_joystick_select = 0
                     no_input = False
                     pause_input = False
-
+            
             if PAUSE == 1: # PAUSE --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- PAUSE
                 window_surface.blit(pause_square, res_pos(320,180))
                 window_surface.blit(text_pause, res_pos(650,300))
@@ -1732,7 +1746,7 @@ while launched: #Pour fermer la fenêtre
                 elif langue == 1:
                     temp_langue = 1
 
-                aliasing_rect = language_icon_eng.get_rect(topleft=res_pos(700,410))
+                aliasing_rect = valid.get_rect(topleft=res_pos(700,410))
                 if text_aliasing == True: # Activer/Désactiver l'aliasing du texte
                     temp_text_aliasing = True
                 elif text_aliasing == False:
@@ -1751,14 +1765,14 @@ while launched: #Pour fermer la fenêtre
                 resolution4 = text_50a.render(f"1280x720", text_aliasing, white)
                 res_select = 0
 
-                fullscreen_rect = language_icon_eng.get_rect(topleft=res_pos(575,560))
+                fullscreen_rect = valid.get_rect(topleft=res_pos(575,560))
                 if fullscreen == 1:  # Activer/Désactiver le plein écran
                     temp_fullscreen = 1
                 elif fullscreen == 0:
                     temp_fullscreen = 0
 
 
-                show_fps_rect = language_icon_eng.get_rect(topleft=res_pos(450,335))
+                show_fps_rect = valid.get_rect(topleft=res_pos(450,335))
                 less_framerate = left_arrow.get_rect(topleft=res_pos(460,637))
                 more_framerate = right_arrow.get_rect(topleft=res_pos(610,637))
                 temp_fps = fps #Modifier framerate
