@@ -47,6 +47,12 @@ def quit(language = 0):
     if language == 1:
         return "Quitter?"
 
+def the_quit(language = 0):
+    if language == 0:
+        return "Quit"
+    if language == 1:
+        return "Quitter"
+
 def yes(language = 0):
     if language == 0:
         return "Yes"
@@ -160,6 +166,12 @@ def searching_controller(language = 0):
         return "Searching controller..."
     if language == 1:
         return "Recherche manette..."
+
+def use_controller(language = 0):
+    if language == 0:
+        return "Use controller?"
+    if language == 1:
+        return "Utiliser la manette?"
 
 def tutorial(language = 0):
     if language == 0:
