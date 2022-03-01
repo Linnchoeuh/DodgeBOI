@@ -12,7 +12,6 @@ except:
     exit()
 from telnetlib import GA
 from pygame.locals import *
-import os.path as path
 # import time
 # import random
 # import ctypes
@@ -26,7 +25,7 @@ pygame.font.init()
 
 pygame.display.set_caption("DodgeBOI")
 
-Game = GameClass(pygame, path)
+Game = GameClass(pygame)
 Game.ResManager.ChangeRes(1280, 720)
 
 clock = pygame.time.Clock()

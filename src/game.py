@@ -9,7 +9,6 @@ from mouse import *
 from keyboard import *
 from tools.resolution_manager import *
 
-
 class ColorPaletteStruct():
     def __init__(self):
         self.black  = (0,	0,	 0)
@@ -28,15 +27,14 @@ class MenusStruct():
         self.SETTING = 2
 
 class FontStruct():
-    def __init__(self, pygame, path, ResManager):
+    def __init__(self, pygame, ResManager):
         font_path = "./fonts/VCR_OSD_MONO_1.ttf"
         self.debug = pygame.font.Font(font_path, ResManager.ResScaling(20))
         font_path = "./fonts/arialbd.ttf"
         self.title = pygame.font.Font(font_path, ResManager.ResScaling(100))
 
-
 class GameClass():
-    def __init__(self, pygame, path):
+    def __init__(self, pygame):
         self.pygame = pygame
         self.ws = 0
         self.Mouse = MouseClass(self.pygame)
@@ -45,4 +43,4 @@ class GameClass():
         self.menu = self.Menus.MAIN
         self.Colors = ColorPaletteStruct()
         self.ResManager = ResolutionManagerClass(1280, 720)
-        self.Fonts = FontStruct(self.pygame, path, self.ResManager)
+        self.Fonts = FontStruct(self.pygame, self.ResManager)
