@@ -7,7 +7,7 @@ Copyright (c) 2022
 
 class ResolutionObject():
     def __init__(self, width, height):
-        self.native = (width, height)
+        self.native = (1280, 720)
         self.current = [width, height]
 
 class ResolutionManagerClass():
@@ -15,18 +15,17 @@ class ResolutionManagerClass():
         self.WIDTH = 0;
         self.HEIGHT = 1;
         self.Res = ResolutionObject(width, height)
-        self.scaling_coef = 1
+        self.scaling_coef = self.Res.current[self.HEIGHT] / self.Res.native[self.HEIGHT]
         self.fullscreen = False
 
-    def ResScaling(self, value):
+    def Scaling(self, value):
         return (value * self.scaling_coef)
 
-    def ResPosScaling(self, x, y):
+    def PosScaling(self, x, y):
         return (x * self.scaling_coef, y * self.scaling_coef)
 
-    def ChangeRes(self, width, height):
-        self.Res.current = [width, height]
-        self.scaling_coef = self.Res.current[self.HEIGHT] / self.Res.native[self.HEIGHT]
+    def AreaScaling(self, x, y, w, h):
+        return (x * self.scaling_coef, y * self.scaling_coef, w * self.scaling_coef, h * self.scaling_coef)
 
     def ToggleFullscreen(self, pygame, Keyboard, Game, K_F11):
         key_status = [

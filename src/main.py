@@ -19,31 +19,35 @@ from pygame.locals import *
 
 from game import *
 from menus.main_menu import *
+from effect.transition import *
 
 pygame.init()
 pygame.font.init()
 
 pygame.display.set_caption("DodgeBOI")
 
-Game = GameClass(pygame)
-Game.ResManager.ChangeRes(1280, 720)
+Game = GameClass(pygame, 1280, 720)
+
+Transition = TransitionClass(Game)
 
 clock = pygame.time.Clock()
 Game.ws = pygame.display.set_mode(Game.ResManager.Res.current)
 
 def menu_Interaction(Game):
-    if Game.menu == Game.Menus.MAIN:
-        main_menu(Game)
+    match Game.curr_menu:
+        case Game.Menus.MAIN:
+            main_menu(Game)
 
-launched = True
-while launched: #Pour fermer la fenêtre
+while Game.launched: #Pour fermer la fenêtre
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            launched = False
+        if (event.type == pygame.QUIT):
+            Game.launched = False
     Game.ws.fill(Game.Colors.black)
     Game.Mouse.updateStatus()
     Game.Keyboard.updateStatus()
     Game.ResManager.ToggleFullscreen(Game.pygame, Game.Keyboard, Game, K_F11)
     menu_Interaction(Game)
+    Game.curr_menu = Transition.Check(Game)
     pygame.display.flip()
-    dt = clock.tick(60)/1000
+    Game.framerate.dt = clock.tick(Game.framerate.fps)/1000
+    Game.framerate.speed = Game.framerate.fps / Game.framerate.base_fps
