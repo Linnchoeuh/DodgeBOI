@@ -28,10 +28,10 @@ class ResolutionManagerClass():
         self.Res.current = [width, height]
         self.scaling_coef = self.Res.current[self.HEIGHT] / self.Res.native[self.HEIGHT]
 
-    def ToggleFullscreen(self, pygame, Keyboard, Game):
+    def ToggleFullscreen(self, pygame, Keyboard, Game, K_F11):
         key_status = [
-            Keyboard.buttons.curr[1073741892],
-            Keyboard.buttons.prev[1073741892]
+            Keyboard.buttons.curr[K_F11],
+            Keyboard.buttons.prev[K_F11]
         ]
         if (key_status[0] == True and key_status[1] == False):
             if self.fullscreen == True:

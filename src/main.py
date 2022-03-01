@@ -44,7 +44,7 @@ while launched: #Pour fermer la fenêtre
     Game.ws.fill(Game.Colors.black)
     Game.Mouse.updateStatus()
     Game.Keyboard.updateStatus()
-    Game.ResManager.ToggleFullscreen(Game.pygame, Game.Keyboard, Game)
+    Game.ResManager.ToggleFullscreen(Game.pygame, Game.Keyboard, Game, K_F11)
     menu_Interaction(Game)
     pygame.display.flip()
     dt = clock.tick(60)/1000
