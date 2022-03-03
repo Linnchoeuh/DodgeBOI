@@ -7,11 +7,10 @@ Copyright (c) 2022
 
 try:
     import pygame
+    from pygame.locals import *
 except:
     print("Pygame not found.")
     exit()
-from telnetlib import GA
-from pygame.locals import *
 # import time
 # import random
 # import ctypes
@@ -34,17 +33,17 @@ Game = GameClass(pygame, 1280, 720)
 Transition = TransitionClass(Game)
 
 clock = pygame.time.Clock()
-Game.ws = pygame.display.set_mode(Game.ResManager.Res.current)
+Game.ws = pygame.display.set_mode(Game.Res.current)
 
 def menu_Interaction(Game):
-    match Game.curr_menu:
-        case Game.Menus.MAIN:
+    match Game.Menu.curr:
+        case Game.Menu.MENUS.MAIN:
             main_menu(Game)
-        case Game.Menus.GAME:
+        case Game.Menu.MENUS.GAME:
             game_menu(Game)
-        case Game.Menus.SETTINGS:
+        case Game.Menu.MENUS.SETTINGS:
             settings_menu(Game)
-        case Game.Menus.STATS:
+        case Game.Menu.MENUS.STATS:
             stats_menu(Game)
 
 while Game.launched: #Pour fermer la fenêtre
@@ -54,9 +53,10 @@ while Game.launched: #Pour fermer la fenêtre
     Game.ws.fill(Game.Colors.darker_grey)
     Game.Mouse.updateStatus()
     Game.Keyboard.updateStatus()
-    Game.ResManager.ToggleFullscreen(Game.pygame, Game.Keyboard, Game, K_F11)
+    Game.Res.Manager.ToggleFullscreen(Game.Keyboard, Game, K_F11)
     menu_Interaction(Game)
-    Game.curr_menu = Transition.Check(Game)
+    Game.Menu.curr = Transition.Check(Game)
+    Game.speed = Game.fps.update_fps(clock)
+    Game.fps.show_fps(Game.ws, Game.Res.Manager.Scale.Pos(5, 5), Game.Fonts.debug)
     pygame.display.flip()
-    Game.framerate.dt = clock.tick(Game.framerate.fps)/1000
-    Game.framerate.speed = Game.framerate.fps / Game.framerate.base_fps
+

@@ -7,6 +7,8 @@ Copyright (c) 2022
 
 from mouse import *
 from keyboard import *
+from fps import *
+from map_generator.map_generator import *
 from tools.resolution_manager import *
 
 class ColorPaletteStruct():
@@ -32,33 +34,38 @@ class MenusStruct():
         self.STATS = 3
 
 class FontStruct():
-    def __init__(self, pygame, ResManager):
+    def __init__(self, pygame, Res):
         font_path = "./fonts/VCR_OSD_MONO_1.ttf"
-        self.debug = pygame.font.Font(font_path, round(ResManager.Scaling(20)))
+        self.debug = pygame.font.Font(font_path, round(Res.Manager.Scale.Val(20)))
         font_path = "./fonts/arialbd.ttf"
-        self.title = pygame.font.Font(font_path, round(ResManager.Scaling(100)))
+        self.title = pygame.font.Font(font_path, round(Res.Manager.Scale.Val(100)))
         font_path = "./fonts/arialbd.ttf"
-        self.button = pygame.font.Font(font_path, round(ResManager.Scaling(60)))
+        self.button = pygame.font.Font(font_path, round(Res.Manager.Scale.Val(60)))
 
-class FramerateStruct():
+class MenuManager():
     def __init__(self):
-        self.dt = 0;
-        self.speed = 1;
-        self.base_fps = 60
-        self.fps = 60;
+        self.MENUS = MenusStruct()
+        self.prev = -1
+        self.curr = self.MENUS.MAIN
+
+    def Changed(self):
+        state = (self.curr != self.prev)
+        if (state):
+            self.prev = self.curr
+        return (state)
 
 class GameClass():
     def __init__(self, pygame, width, height):
         self.pygame = pygame
         self.launched = True
         self.ws = 0
-        self.framerate = FramerateStruct()
+        self.fps = FpsClass()
+        self.speed = 1
+        self.Menu = MenuManager()
         self.Mouse = MouseClass(self.pygame)
         self.Keyboard = KeyboardClass(self.pygame)
-        self.Menus = MenusStruct()
-        self.prev_menu = -1
-        self.curr_menu = self.Menus.MAIN
         self.Colors = ColorPaletteStruct()
-        self.ResManager = ResolutionManagerClass(width, height)
-        self.Fonts = FontStruct(self.pygame, self.ResManager)
+        self.Res = ResolutionClass(width, height)
+        self.Fonts = FontStruct(self.pygame, self.Res)
         self.pause = False
+        self.Bloc = BlocClass(self.Res)

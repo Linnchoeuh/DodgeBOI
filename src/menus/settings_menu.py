@@ -11,8 +11,7 @@ BackButton = ButtonClass(0, 0, 0, 0)
 BackButton.text = "Back"
 
 def settings_menu(Game):
-    if (Game.curr_menu != Game.prev_menu):
-        BackButton.ChangeAreaValue(0, 0, 150, 75, Game.ResManager)
-        Game.prev_menu = Game.curr_menu
+    if (Game.Menu.Changed()):
+        BackButton.ChangeAreaValue(0, 0, 150, 75, Game.Res)
     if BackButton.Style1(Game, Game.Fonts.button):
-        Game.curr_menu = Game.Menus.MAIN
+        Game.Menu.curr = Game.Menu.MENUS.MAIN

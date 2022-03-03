@@ -24,3 +24,6 @@ class KeyboardClass():
         else:
             self.key.curr = self.key.nothing
             self.key.prev = self.key.nothing
+
+    def KeyOncePressed(self, key_ID):
+        return (self.key.curr[key_ID] and self.key.prev[key_ID] == False)

@@ -29,18 +29,17 @@ class ButtonClass():
         self.area = AreaStruct(x, y, w, h)
         self.style1data = Style1Struct()
 
-    def ChangeAreaValue(self, x, y, w, h, ResManager = None):
-        if (ResManager == None):
+    def ChangeAreaValue(self, x, y, w, h, Res = None):
+        if (Res.Manager == None):
             self.area.x = x
             self.area.y = y
             self.area.w = w
             self.area.h = h
         else:
-            self.area.x = ResManager.Scaling(x)
-            self.area.y = ResManager.Scaling(y)
-            self.area.w = ResManager.Scaling(w)
-            self.area.h = ResManager.Scaling(h)
-
+            self.area.x = Res.Manager.Scale.Val(x)
+            self.area.y = Res.Manager.Scale.Val(y)
+            self.area.w = Res.Manager.Scale.Val(w)
+            self.area.h = Res.Manager.Scale.Val(h)
 
     def CheckArea(self, Mouse):
         self.clicked = False
@@ -61,20 +60,23 @@ class ButtonClass():
                 self.clicked = True
         return (self.clicked, self.touched)
 
-    def Style1(self, Game, font):
+    def Style1(self, Game, font, mirror = False):
         status = self.CheckArea(Game.Mouse)
         text = font.render(self.text, True, Game.Colors.white)
-        linewidth = round(Game.ResManager.Scaling(5))
+        linewidth = round(Game.Res.Manager.Scale.Val(5))
         const_pos = self.area.x + self.area.w
 
         Game.ws.blit(text, (self.area.x, self.area.y))
         if self.style1data.progression < pi and status[1]:
-            self.style1data.progression += self.style1data.step / Game.framerate.speed
+            self.style1data.progression += self.style1data.step / Game.speed
         elif self.style1data.progression > 0 and status[1] == False:
-            self.style1data.progression -= self.style1data.step / Game.framerate.speed
+            self.style1data.progression -= self.style1data.step / Game.speed
         pos1 = [self.area.x, self.area.y + self.area.h]
-        smooth_pos = ((1 + -cos(self.style1data.progression)) / 2) * is_positive(self.area.w)
-        smooth_pos *= Game.ResManager.Scaling(self.style1data.linewidth)
+        smooth_pos = ((1 + -cos(self.style1data.progression)) / 2)
+        if (mirror):
+            pos1[0], const_pos = const_pos, pos1[0]
+            smooth_pos *= -1
+        smooth_pos *= Game.Res.Manager.Scale.Val(self.style1data.linewidth)
         pos2 = [const_pos + smooth_pos, self.area.y + self.area.h]
         Game.pygame.draw.line(Game.ws, Game.Colors.white, pos1, pos2, linewidth)
         return (status[0])
