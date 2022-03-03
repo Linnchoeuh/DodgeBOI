@@ -8,7 +8,7 @@ Copyright (c) 2022
 class FpsClass():
     def __init__(self):
         self.BASE = 60
-        self.CAPPED = 1000
+        self.CAPPED = 165
         self.current = self.CAPPED
         self.dt = 0
 

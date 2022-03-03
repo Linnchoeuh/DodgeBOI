@@ -35,12 +35,16 @@ class MenusStruct():
 
 class FontStruct():
     def __init__(self, pygame, Res):
-        font_path = "./fonts/VCR_OSD_MONO_1.ttf"
-        self.debug = pygame.font.Font(font_path, round(Res.Manager.Scale.Val(20)))
-        font_path = "./fonts/arialbd.ttf"
-        self.title = pygame.font.Font(font_path, round(Res.Manager.Scale.Val(100)))
-        font_path = "./fonts/arialbd.ttf"
-        self.button = pygame.font.Font(font_path, round(Res.Manager.Scale.Val(60)))
+        VCR_OSD_MONO_1 = "VCR_OSD_MONO_1.ttf"
+        ARIALBD = "arialbd.ttf"
+        try:
+            font_path = "./fonts/"
+            self.debug = pygame.font.Font(font_path + VCR_OSD_MONO_1, round(Res.Manager.Scale.Val(20)))
+        except:
+            font_path = "./../fonts/"
+            self.debug = pygame.font.Font(font_path + VCR_OSD_MONO_1, round(Res.Manager.Scale.Val(20)))
+        self.title = pygame.font.Font(font_path + ARIALBD, round(Res.Manager.Scale.Val(100)))
+        self.button = pygame.font.Font(font_path + ARIALBD, round(Res.Manager.Scale.Val(60)))
 
 class MenuManager():
     def __init__(self):
