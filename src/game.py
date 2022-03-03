@@ -12,7 +12,10 @@ from tools.resolution_manager import *
 class ColorPaletteStruct():
     def __init__(self):
         self.black  = (0,	0,	 0)
-        self.grey   = (128,	128, 128)
+        self.darker_grey   = (31,	31, 31)
+        self.dark_grey   = (63,	63, 63)
+        self.grey   = (127,	127, 127)
+        self.light_grey   = (191,	191, 191)
         self.white  = (255,	255, 255)
         self.red    = (255,	0,	 0)
         self.green  = (0,	255, 0)
@@ -25,7 +28,7 @@ class MenusStruct():
     def __init__(self):
         self.MAIN = 0
         self.GAME = 1
-        self.SETTING = 2
+        self.SETTINGS = 2
         self.STATS = 3
 
 class FontStruct():
@@ -53,8 +56,9 @@ class GameClass():
         self.Mouse = MouseClass(self.pygame)
         self.Keyboard = KeyboardClass(self.pygame)
         self.Menus = MenusStruct()
-        self.prev_menu = self.Menus.MAIN
+        self.prev_menu = -1
         self.curr_menu = self.Menus.MAIN
         self.Colors = ColorPaletteStruct()
         self.ResManager = ResolutionManagerClass(width, height)
         self.Fonts = FontStruct(self.pygame, self.ResManager)
+        self.pause = False

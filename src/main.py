@@ -19,6 +19,9 @@ from pygame.locals import *
 
 from game import *
 from menus.main_menu import *
+from menus.settings_menu import *
+from menus.stats_menu import *
+from menus.game_menu import *
 from effect.transition import *
 
 pygame.init()
@@ -37,12 +40,18 @@ def menu_Interaction(Game):
     match Game.curr_menu:
         case Game.Menus.MAIN:
             main_menu(Game)
+        case Game.Menus.GAME:
+            game_menu(Game)
+        case Game.Menus.SETTINGS:
+            settings_menu(Game)
+        case Game.Menus.STATS:
+            stats_menu(Game)
 
 while Game.launched: #Pour fermer la fenêtre
     for event in pygame.event.get():
         if (event.type == pygame.QUIT):
             Game.launched = False
-    Game.ws.fill(Game.Colors.black)
+    Game.ws.fill(Game.Colors.darker_grey)
     Game.Mouse.updateStatus()
     Game.Keyboard.updateStatus()
     Game.ResManager.ToggleFullscreen(Game.pygame, Game.Keyboard, Game, K_F11)

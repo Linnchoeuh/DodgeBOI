@@ -5,17 +5,22 @@ Keyboard manager
 Copyright (c) 2022
 """
 
-class KeyboardButtonClass():
+class KeyboardKeyClass():
     def __init__(self, pygame):
         self.prev = pygame.key.get_pressed()
         self.curr = pygame.key.get_pressed()
+        self.nothing = pygame.key.get_pressed()
 
 class KeyboardClass():
     def __init__(self, pygame):
         self.pygame = pygame
-        self.buttons = KeyboardButtonClass(self.pygame)
+        self.key = KeyboardKeyClass(self.pygame)
+        self.disable = False
 
     def updateStatus(self):
-        self.pos = self.pygame.mouse.get_pos()
-        self.buttons.prev = self.buttons.curr;
-        self.buttons.curr = self.pygame.key.get_pressed()
+        if (self.disable == False):
+            self.key.prev = self.key.curr;
+            self.key.curr = self.pygame.key.get_pressed()
+        else:
+            self.key.curr = self.key.nothing
+            self.key.prev = self.key.nothing

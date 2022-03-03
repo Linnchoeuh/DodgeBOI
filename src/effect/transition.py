@@ -27,6 +27,8 @@ class TransitionClass():
                     self.progression = 1
                     self.wait = 0
                     self.state = 1
+                    Game.Keyboard.disable = True
+                    Game.Mouse.disable = True
                 case 1:
                     self.progression -= self.transition_speed / Game.framerate.speed
                     if (self.progression <= 0):
@@ -41,6 +43,8 @@ class TransitionClass():
                     self.progression -= self.transition_speed / Game.framerate.speed
                     if (self.progression < -1):
                         self.state = 0
+                        Game.Keyboard.disable = False
+                        Game.Mouse.disable = False
             self.rect = Game.pygame.Rect(
                 round(self.progression * Game.ResManager.Res.current[0]),
                 0,
