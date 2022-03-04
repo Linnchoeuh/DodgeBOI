@@ -15,10 +15,11 @@ ResumeButton.text = "Resume"
 BackButton = ButtonClass(0, 0, 0, 0)
 BackButton.text = "Back to main menu"
 
+MAX_SPEED = 2.5
+
 def pause_menu(Game):
-    if (Game.Menu.Changed()):
-        ResumeButton.ChangeAreaValue(base_offset + 25, base_offset + 220, 240, 75, Game.Res)
-        BackButton.ChangeAreaValue(base_offset + 25, base_offset + 320, 550, 75, Game.Res)
+    ResumeButton.ChangeAreaValue(base_offset + 25, base_offset + 220, 240, 75, Game.Res)
+    BackButton.ChangeAreaValue(base_offset + 25, base_offset + 320, 550, 75, Game.Res)
     if (Game.Keyboard.KeyOncePressed(K_ESCAPE)):
         if (Game.pause):
             Game.pause = False
@@ -40,4 +41,15 @@ def pause_menu(Game):
             Game.Menu.curr = Game.Menu.MENUS.MAIN
 
 def game_menu(Game):
+    if (Game.Menu.Changed()):
+        Game.Bloc.speed = 1
+    Game.Bloc.Run(Game.ws, 1.2, Game.pause)
+    if (Game.pause == False):
+        Game.Player.Movement(Game.Player.KeyboardInput(Game.Keyboard))
+    Game.Player.Display(Game.ws)
     pause_menu(Game)
+    if (Game.Bloc.speed < MAX_SPEED):
+        Game.Bloc.speed += 0.00005 / Game.speed
+    else:
+        Game.Bloc.speed = MAX_SPEED
+    print(Game.Bloc.speed)

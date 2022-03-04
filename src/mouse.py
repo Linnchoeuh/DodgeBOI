@@ -10,7 +10,7 @@ class MouseButtonClass():
         self.count = 5
         self.prev = pygame.mouse.get_pressed(self.count)
         self.curr = pygame.mouse.get_pressed(self.count)
-        self.nothing = pygame.mouse.get_pressed(self.count)
+        self.idle = pygame.mouse.get_pressed(self.count)
 
 class MouseClass():
     def __init__(self, pygame):
@@ -26,6 +26,6 @@ class MouseClass():
             self.buttons.curr = self.pygame.mouse.get_pressed(self.buttons.count)
         else:
             self.pos = (-500, -500)
-            self.buttons.curr = self.buttons.nothing
-            self.buttons.prev = self.buttons.nothing
+            self.buttons.curr = self.buttons.idle
+            self.buttons.prev = self.buttons.idle
 

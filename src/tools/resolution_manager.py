@@ -8,7 +8,7 @@ Copyright (c) 2022
 import pygame
 
 WIDTH = 0
-HEIGHT = 0
+HEIGHT = 1
 
 class ScalerClass():
     def __init__(self, scaling_coef):

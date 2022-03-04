@@ -81,8 +81,3 @@ class ButtonClass():
         Game.pygame.draw.line(Game.ws, Game.Colors.white, pos1, pos2, linewidth)
         return (status[0])
 
-    def Style2(self, Game):
-        status = self.CheckArea(Game.Mouse)
-
-        return (status[0])
-

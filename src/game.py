@@ -8,7 +8,8 @@ Copyright (c) 2022
 from mouse import *
 from keyboard import *
 from fps import *
-from map_generator.map_generator import *
+from game_asset.player import *
+from game_asset.map_generator import *
 from tools.resolution_manager import *
 
 class ColorPaletteStruct():
@@ -26,13 +27,6 @@ class ColorPaletteStruct():
         self.cyan   = (0,	255, 255)
         self.purple = (255,	0,	 255)
 
-class MenusStruct():
-    def __init__(self):
-        self.MAIN = 0
-        self.GAME = 1
-        self.SETTINGS = 2
-        self.STATS = 3
-
 class FontStruct():
     def __init__(self, pygame, Res):
         VCR_OSD_MONO_1 = "VCR_OSD_MONO_1.ttf"
@@ -45,6 +39,13 @@ class FontStruct():
             self.debug = pygame.font.Font(font_path + VCR_OSD_MONO_1, round(Res.Manager.Scale.Val(20)))
         self.title = pygame.font.Font(font_path + ARIALBD, round(Res.Manager.Scale.Val(100)))
         self.button = pygame.font.Font(font_path + ARIALBD, round(Res.Manager.Scale.Val(60)))
+
+class MenusStruct():
+    def __init__(self):
+        self.MAIN = 0
+        self.GAME = 1
+        self.SETTINGS = 2
+        self.STATS = 3
 
 class MenuManager():
     def __init__(self):
@@ -73,3 +74,4 @@ class GameClass():
         self.Fonts = FontStruct(self.pygame, self.Res)
         self.pause = False
         self.Bloc = BlocClass(self.Res)
+        self.Player = PlayerClass(self.Res)
