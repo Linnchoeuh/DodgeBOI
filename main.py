@@ -2,7 +2,6 @@
 main.py
 Lenny Vigeon (lenny.vigeon@gmail.com)
 Main program
-Copyright (c) 2022
 """
 
 try:
@@ -16,12 +15,13 @@ except:
 # import ctypes
 # import sys
 
-from game import *
-from menus.main_menu import *
-from menus.settings_menu import *
-from menus.stats_menu import *
-from menus.game_menu import *
-from effect.transition import *
+from include.colors import *
+from src.game.game_struct import *
+from src.menus.main_menu import *
+from src.menus.settings_menu import *
+from src.menus.stats_menu import *
+from src.menus.game_menu import *
+from src.effect.transition import *
 
 pygame.init()
 pygame.font.init()
@@ -31,9 +31,8 @@ pygame.display.set_caption("DodgeBOI")
 Game = GameClass(pygame, 1280, 720)
 
 Transition = TransitionClass(Game)
-
 clock = pygame.time.Clock()
-Game.ws = pygame.display.set_mode(Game.Res.current)
+Game.ws = pygame.display.set_mode(Game.Res.current, pygame.RESIZABLE | pygame.HWSURFACE | pygame.DOUBLEBUF)
 
 def menu_Interaction(Game):
     match Game.Menu.curr:
@@ -50,7 +49,8 @@ while Game.launched: #Pour fermer la fenêtre
     for event in pygame.event.get():
         if (event.type == pygame.QUIT):
             Game.launched = False
-    Game.ws.fill(Game.Colors.darker_grey)
+    Game.Res.current = [Game.ws.get_width(), Game.ws.get_height()]
+    Game.ws.fill(DARKER_GREY)
     Game.Mouse.updateStatus()
     Game.Keyboard.updateStatus()
     Game.Res.Manager.ToggleFullscreen(Game.Keyboard, Game, K_F11)

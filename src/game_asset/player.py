@@ -2,10 +2,9 @@
 player.py
 Lenny Vigeon (lenny.vigeon@gmail.com)
 Game element
-Copyright (c) 2022
 """
 
-from tools.resolution_manager import HEIGHT
+from src.tools.resolution_manager import HEIGHT
 import random
 import pygame
 

@@ -5,27 +5,12 @@ Game element
 Copyright (c) 2022
 """
 
-from mouse import *
-from keyboard import *
-from fps import *
-from game_asset.player import *
-from game_asset.map_generator import *
-from tools.resolution_manager import *
-
-class ColorPaletteStruct():
-    def __init__(self):
-        self.black  = (0,	0,	 0)
-        self.darker_grey   = (31,	31, 31)
-        self.dark_grey   = (63,	63, 63)
-        self.grey   = (127,	127, 127)
-        self.light_grey   = (191,	191, 191)
-        self.white  = (255,	255, 255)
-        self.red    = (255,	0,	 0)
-        self.green  = (0,	255, 0)
-        self.blue   = (0,	0,   255)
-        self.yellow = (255,	255, 0)
-        self.cyan   = (0,	255, 255)
-        self.purple = (255,	0,	 255)
+from src.mouse import *
+from src.keyboard import *
+from src.fps import *
+from src.game_asset.player import *
+from src.game_asset.map_generator import *
+from src.tools.resolution_manager import *
 
 class FontStruct():
     def __init__(self, pygame, Res):
@@ -69,7 +54,6 @@ class GameClass():
         self.Menu = MenuManager()
         self.Mouse = MouseClass(self.pygame)
         self.Keyboard = KeyboardClass(self.pygame)
-        self.Colors = ColorPaletteStruct()
         self.Res = ResolutionClass(width, height)
         self.Fonts = FontStruct(self.pygame, self.Res)
         self.pause = False

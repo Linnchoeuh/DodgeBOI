@@ -6,8 +6,8 @@ Copyright (c) 2022
 """
 
 from pygame import K_ESCAPE
-from tools.button import *
-from tools.draw_rect_alpha import *
+from include.buttons import *
+from src.tools.draw_rect_alpha import *
 base_offset = 150
 
 ResumeButton = ButtonClass(0, 0, 0, 0)

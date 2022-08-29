@@ -5,7 +5,7 @@ Where the map is created
 Copyright (c) 2022
 """
 
-from tools.resolution_manager import WIDTH, HEIGHT
+from src.tools.resolution_manager import WIDTH, HEIGHT
 import pygame
 import time
 import random

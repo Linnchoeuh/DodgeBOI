@@ -1,8 +1,7 @@
 """
 fps.py
 Lenny Vigeon (lenny.vigeon@gmail.com)
-An fps class that work with pyself
-Copyright (c) 2022
+An fps class that work with py
 """
 
 class FpsClass():

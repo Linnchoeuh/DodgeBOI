@@ -5,7 +5,7 @@ Where the stats shows up
 Copyright (c) 2022
 """
 
-from tools.button import *
+from include.buttons import *
 
 BackButton = ButtonClass(0, 0, 0, 0)
 BackButton.text = "Back"
