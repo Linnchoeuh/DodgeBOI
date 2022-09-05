@@ -23,6 +23,7 @@ class FontStruct():
             font_path = "./../fonts/"
             self.debug = pygame.font.Font(font_path + VCR_OSD_MONO_1, round(Res.Manager.Scale.Val(20)))
         self.title = pygame.font.Font(font_path + ARIALBD, round(Res.Manager.Scale.Val(100)))
+        print(self.title.size("Hello world"))
         self.button = pygame.font.Font(font_path + ARIALBD, round(Res.Manager.Scale.Val(60)))
 
 class MenusStruct():
@@ -48,7 +49,7 @@ class GameClass():
     def __init__(self, pygame, width, height):
         self.pygame = pygame
         self.launched = True
-        self.ws = 0
+        self.ws = None
         self.fps = FpsClass()
         self.speed = 1
         self.Menu = MenuManager()

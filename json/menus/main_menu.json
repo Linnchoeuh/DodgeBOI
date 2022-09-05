@@ -1,0 +1,21 @@
+[
+	{
+		"type": "text",
+		"name": "title",
+		"x": "50%",
+		"y": "50%",
+		"text": "DodgeBOI",
+		"font": "arialbd.ttf",
+		"font_size": 150,
+		"color": [255,255,255]
+	},
+	{
+		"type": "rect",
+		"name": "test_rect",
+		"x": 10,
+		"y": 10,
+		"w": 10,
+		"h": 10,
+		"color": [255,255,255]
+	}
+]
