@@ -3,7 +3,7 @@ area.py
 Lenny Vigeon (lenny.vigeon@gmail.com)
 """
 
-class AreaStruct():
+class AreaObject():
     def __init__(self,
                  x: int = 0,
                  y: int = 0,

@@ -5,7 +5,7 @@ Main menu
 Copyright (c) 2022
 """
 
-from src.effect.responsive_object import *
+from src.responsive_object.responsive_object_array import *
 from include.colors import *
 
 # PlayButton = ButtonClass(0, 0, 0, 0)

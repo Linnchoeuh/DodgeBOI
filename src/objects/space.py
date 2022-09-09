@@ -3,9 +3,9 @@ space.py
 Lenny Vigeon (lenny.vigeon@gmail.com)
 """
 
-from include.struct import AreaStruct
+from include.objects import AreaObject
 
-class SpaceStruct():
+class SpaceObject():
     def __init__(self,
                  x1: int = 0,
 				 y1: int = 0,
@@ -30,7 +30,7 @@ class SpaceStruct():
         self.y2 = y2
 
     def SetValuesFromArea(self,
-                          area: AreaStruct):
+                          area: AreaObject):
         self.SetValues(area.x, area.y, area.x + area.w, area.y + area.h)
         if self.x1 > self.x2:
             self.x1, self.x2 = self.x2, self.x1
