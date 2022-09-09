@@ -1,0 +1,60 @@
+[
+	{
+		"type": "text",
+		"name": "title",
+		"position_data": {
+			"coords": {
+				"x": "50%",
+				"x_max": null,
+				"x_min": null,
+				"y": "50%",
+				"y_max": null,
+				"y_min": null
+			},
+			"size": {
+				"w": "50%",
+				"w_max": null,
+				"w_min": null,
+				"h": "50%",
+				"h_max": null,
+				"h_min": null
+			},
+			"offset": {
+				"x": "50%",
+				"x_max": null,
+				"x_min": null,
+				"y": "50%",
+				"y_max": null,
+				"y_min": null
+			},
+			"scale": {
+				"global": 1,
+				"x": 1,
+				"x_max": null,
+				"x_min": null,
+				"y": 2,
+				"y_max": null,
+				"y_min": null
+
+			},
+			"rotation_rad": 0
+		},
+		"x": "50%",
+		"y": "50%",
+		"offset_x": "50%",
+		"offset_y": "50%",
+		"text": "DodgeBOI",
+		"font": "arialbd.ttf",
+		"font_size": 150,
+		"color": [255,0,255]
+	},
+	{
+		"type": "rect",
+		"name": "test_rect",
+		"x": 10,
+		"y": 10,
+		"w": 10,
+		"h": 10,
+		"color": [255,0,255]
+	}
+]
