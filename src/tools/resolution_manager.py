@@ -35,7 +35,7 @@ class ResolutionManagerClass():
         self.Scale = ScalerClass(self.scaling_coef)
 
     def ToggleFullscreen(self, Keyboard, Game, key_trigger):
-        if (Keyboard.KeyOncePressed(key_trigger)):
+        if (Keyboard.key.clicked[key_trigger]):
             if self.fullscreen == True:
                 self.fullscreen = False
                 Game.ws = pygame.display.set_mode(self.res)

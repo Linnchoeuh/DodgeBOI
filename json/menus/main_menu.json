@@ -2,59 +2,145 @@
 	{
 		"type": "text",
 		"name": "title",
-		"position_data": {
-			"coords": {
-				"x": "50%",
-				"x_max": null,
-				"x_min": null,
-				"y": "50%",
-				"y_max": null,
-				"y_min": null
-			},
-			"size": {
-				"w": "50%",
-				"w_max": null,
-				"w_min": null,
-				"h": "50%",
-				"h_max": null,
-				"h_min": null
-			},
-			"offset": {
-				"x": "50%",
-				"x_max": null,
-				"x_min": null,
-				"y": "50%",
-				"y_max": null,
-				"y_min": null
-			},
-			"scale": {
-				"global": 1,
-				"x": 1,
-				"x_max": null,
-				"x_min": null,
-				"y": 2,
-				"y_max": null,
-				"y_min": null
 
-			},
-			"rotation_rad": 0
-		},
-		"x": "50%",
-		"y": "50%",
-		"offset_x": "50%",
-		"offset_y": "50%",
 		"text": "DodgeBOI",
 		"font": "arialbd.ttf",
-		"font_size": 150,
-		"color": [255,0,255]
+		"font_size": 200,
+		"color": [255,255,255],
+
+		"position_data": {
+			"coords": {
+				"x": 10,
+				"x_max": null,
+				"x_min": 1000,
+				"x_reverse": true,
+				"y": 0,
+				"y_max": null,
+				"y_min": null,
+				"y_reverse": false
+			},
+			"offset": {
+				"x": "100%",
+				"x_max": null,
+				"x_min": null,
+				"y": 0,
+				"y_max": null,
+				"y_min": null
+			}
+		}
 	},
 	{
-		"type": "rect",
-		"name": "test_rect",
-		"x": 10,
-		"y": 10,
-		"w": 10,
-		"h": 10,
-		"color": [255,0,255]
+		"type": "button",
+		"name": "play",
+
+		"style_id": 0,
+
+		"text": "Play",
+		"font": "arialbd.ttf",
+		"font_size": 70,
+
+		"position_data": {
+			"coords": {
+				"x": 40,
+				"x_min": 0,
+				"x_max": 40,
+				"x_reverse": false,
+				"y": 420,
+				"y_min": 200,
+				"y_max": null,
+				"y_reverse": true
+			}
+		}
+	},
+	{
+		"type": "button",
+		"name": "stats",
+
+		"style_id": 0,
+
+		"text": "Stats",
+		"font": "arialbd.ttf",
+		"font_size": 70,
+
+		"position_data": {
+			"coords": {
+				"x": 40,
+				"x_min": 0,
+				"x_max": 40,
+				"x_reverse": false,
+				"y": 320,
+				"y_min": 280,
+				"y_max": null,
+				"y_reverse": true
+			}
+		}
+	},
+	{
+		"type": "button",
+		"name": "settings",
+
+		"style_id": 0,
+
+		"text": "Settings",
+		"font": "arialbd.ttf",
+		"font_size": 70,
+
+		"position_data": {
+			"coords": {
+				"x": 40,
+				"x_min": 0,
+				"x_max": 40,
+				"x_reverse": false,
+				"y": 220,
+				"y_min": 360,
+				"y_max": null,
+				"y_reverse": true
+			}
+		}
+	},
+	{
+		"type": "button",
+		"name": "exit",
+
+		"style_id": 0,
+
+		"text": "Exit",
+		"font": "arialbd.ttf",
+		"font_size": 70,
+
+		"position_data": {
+			"coords": {
+				"x": 40,
+				"x_reverse": false,
+				"y": 120,
+				"y_min": 440,
+				"y_reverse": true
+			}
+		}
+	},
+	{
+		"type": "button",
+		"name": "tutorial",
+
+		"style_id": 0,
+
+		"text": "Tutorial",
+		"font": "arialbd.ttf",
+		"font_size": 70,
+		"mirror": true,
+
+		"position_data": {
+			"coords": {
+				"x": 40,
+				"x_min": 600,
+				"x_reverse": true,
+				"y": 120,
+				"y_min": 440,
+				"y_reverse": true
+			},
+			"offset": {
+				"x": "100%"
+			}
+		}
 	}
 ]

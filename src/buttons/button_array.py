@@ -5,7 +5,7 @@ Lenny Vigeon (lenny.vigeon@gmail.com)
 
 import json
 from src.buttons.single_button import ButtonClass
-from src.mouse import MouseClass
+from include.input_devices import MouseClass
 
 RELATIVE_POS = 0
 ABSOLUTE_POS = 1

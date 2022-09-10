@@ -53,10 +53,10 @@ while Game.launched: #Pour fermer la fenêtre
     Game.ws.fill(DARKER_GREY)
     Game.Mouse.updateStatus()
     Game.Keyboard.updateStatus()
-    Game.Res.Manager.ToggleFullscreen(Game.Keyboard, Game, K_F11)
+    # Game.Res.Manager.ToggleFullscreen(Game.Keyboard, Game, K_F11)
     menu_Interaction(Game)
     Game.Menu.curr = Transition.Check(Game)
     Game.speed = Game.fps.update_fps(clock)
-    Game.fps.show_fps(Game.ws, Game.Res.Manager.Scale.Pos(5, 5), Game.Fonts.debug)
+    Game.fps.show_fps(Game.ws, Game.Res.Manager.Scale.Pos(5, 5))
     pygame.display.flip()
 

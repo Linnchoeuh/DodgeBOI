@@ -32,3 +32,4 @@ class SizeObject():
     def UpdateDimensionValue(self,
                              resolution: list) -> None:
         self.w.GenerateCoord(resolution)
+        self.h.GenerateCoord(resolution)

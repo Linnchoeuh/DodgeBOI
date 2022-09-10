@@ -5,15 +5,14 @@ Lenny Vigeon (lenny.vigeon@gmail.com)
 
 from include.tools import find_in
 from src.responsive_object.object_type.text_object import *
+from src.responsive_object.object_type.button_object import *
 from src.responsive_object.responsive_object import ResponsiveObject
 
 class TypeInterpretor():
     def __init__(self) -> None:
         self.required_values: list = [
             "type",
-            "name",
-            "x",
-            "y"
+            "name"
         ]
 
     def CheckRequiredValues(self,
@@ -46,4 +45,9 @@ class TypeInterpretor():
             case "rect":
                 return None
             case "button":
-                return None
+                style_id = find_in(config, "style_id")
+                if (style_id == None):
+                    return None
+                NewButtonObject = ButtonObject(style_id)
+                return NewButtonObject.CreateResponsiveObject(config, resolution)
+

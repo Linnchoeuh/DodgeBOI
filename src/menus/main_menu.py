@@ -6,7 +6,10 @@ Copyright (c) 2022
 """
 
 from src.responsive_object.responsive_object_array import *
+from src.responsive_object.object_type.button_object import BUTTON_IS_OVER, BUTTON_PRESSED, BUTTON_CLICKED
 from include.colors import *
+from pygame.locals import *
+from include.tools import find_in
 
 # PlayButton = ButtonClass(0, 0, 0, 0)
 # PlayButton.text = "Play"
@@ -29,18 +32,16 @@ def main_menu(Game):
         ResponsiveArray.LoadConfigFile("./json/menus/main_menu.json")
         Game.pause = False
     ResponsiveArray.CheckResolution(Game.Res.current)
-    ResponsiveArray.DisplayObjects()
-    # ResponsiveArray.ReloadConfig()
-    # title_text = Game.Fonts.title.render("DodgeBOI", True, WHITE)
-    # Game.ws.blit(title_text, Game.Res.Manager.Scale.Pos(50,40))
-    # buttons.DrawButtons(Game.Mouse, Game.pygame, Game.ws, Game.speed, Game.Res.current)
-    # # if PlayButton.Style1(Game, Game.Fonts.button):
-    #     Game.Menu.curr = Game.Menu.MENUS.GAME
-    # if SettingButton.Style1(Game, Game.Fonts.button):
-    #     Game.Menu.curr = Game.Menu.MENUS.SETTINGS
-    # if StatsButton.Style1(Game, Game.Fonts.button):
-    #     Game.Menu.curr = Game.Menu.MENUS.STATS
-    # if QuitButton.Style1(Game, Game.Fonts.button):
-    #     Game.launched = False
-    # if TutorialButton.Style1(Game, Game.Fonts.button, True):
-    #     pass
+    ResponsiveArray.DisplayObjects(Game.Mouse, Game.speed)
+    buttons: dict = ResponsiveArray.ReturnButtonStatus()
+
+    if find_in(buttons, ["play", BUTTON_CLICKED], False):
+        Game.Menu.curr = Game.Menu.MENUS.GAME
+    if find_in(buttons, ["settings", BUTTON_CLICKED], False):
+        Game.Menu.curr = Game.Menu.MENUS.SETTINGS
+    if find_in(buttons, ["stats", BUTTON_CLICKED], False):
+        Game.Menu.curr = Game.Menu.MENUS.STATS
+    if find_in(buttons, ["exit", BUTTON_CLICKED], False):
+        Game.launched = False
+    if find_in(buttons, ["tutorial", BUTTON_CLICKED], False):
+        pass

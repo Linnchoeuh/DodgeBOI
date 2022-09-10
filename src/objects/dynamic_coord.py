@@ -11,10 +11,12 @@ COORD_ALIGNEMENT_VERTICAL = 1
 class DynamicCoordObject():
     def __init__(self):
         self.coord: int = 0
+        self.static_coord: int = 0
         self.coord_type = COORD_TYPE_STATIC
 
         self.relative_coord: float = 0
         self.coord_alignement: int = COORD_ALIGNEMENT_HORIZONTAL
+        self.reverse: bool = False
         self.coord_min: int = 0
         self.coord_max: int = 0
 
@@ -28,44 +30,42 @@ class DynamicCoordObject():
             raise Exception(f"Impossible to format {error_value_copy}, the program expect a percentage value.")
         return percentage_value
 
-    def SetStaticCoord(self,
-                 coord: int) -> None:
-        self.coord = coord
-        self.coord_type = COORD_TYPE_STATIC
-
-    def SetRelativeCoord(self,
-                         relative_coord: float | str,
-                         coord_alignement: int,
-                         coord_min: int = None,
-                         coord_max: int = None) -> None:
+    def SetCoord(self,
+                 coord: int | float | str,
+                 coord_alignement: int = COORD_ALIGNEMENT_HORIZONTAL,
+                 coord_min: int = None,
+                 coord_max: int = None,
+                 reverse: bool = False) -> None:
+        if (coord == None):
+            return
         self.coord_alignement = coord_alignement
         self.coord_min = None
         self.coord_max = None
+        self.reverse = reverse
 
-        if (type(relative_coord) == str):
-            relative_coord = self.ConvertPercentageValue(relative_coord)
-        self.relative_coord = relative_coord
+        if (type(coord) == int):
+            self.coord_type = COORD_TYPE_STATIC
+            self.static_coord = coord
+        else:
+            self.coord_type = COORD_TYPE_RELATIVE
+            if (type(coord) == str):
+                relative_coord = self.ConvertPercentageValue(coord)
+            self.relative_coord = relative_coord
 
         if (coord_min != None):
             self.coord_min = coord_min
-        if (self.coord_max != None):
+        if (coord_max != None):
             self.coord_max = coord_max
-        self.coord_type = COORD_TYPE_RELATIVE
-
-    def SetCoord(self,
-                 coord: int | float | str,
-                 coord_alignement: int) -> None:
-        if (type(coord) == int):
-            self.SetStaticCoord(coord)
-        else:
-            self.SetRelativeCoord(coord, coord_alignement)
 
     def GenerateCoord(self,
                       resolution: list) -> int:
-        if (self.coord_alignement == COORD_ALIGNEMENT_HORIZONTAL):
-            self.coord = self.relative_coord * resolution[0]
+        if (self.coord_type == COORD_TYPE_RELATIVE):
+            self.coord = self.relative_coord * resolution[self.coord_alignement]
         else:
-            self.coord = self.relative_coord * resolution[1]
+            self.coord = self.static_coord
+
+        if (self.reverse):
+            self.coord = resolution[self.coord_alignement] - self.coord
 
         if (self.coord_max != None and self.coord_max < self.coord):
             self.coord = self.coord_max

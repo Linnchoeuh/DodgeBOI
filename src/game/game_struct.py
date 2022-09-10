@@ -5,26 +5,14 @@ Game element
 Copyright (c) 2022
 """
 
-from src.mouse import *
-from src.keyboard import *
+import pygame
+
+from include.input_devices import *
+
 from src.fps import *
 from src.game_asset.player import *
 from src.game_asset.map_generator import *
 from src.tools.resolution_manager import *
-
-class FontStruct():
-    def __init__(self, pygame, Res):
-        VCR_OSD_MONO_1 = "VCR_OSD_MONO_1.ttf"
-        ARIALBD = "arialbd.ttf"
-        try:
-            font_path = "./fonts/"
-            self.debug = pygame.font.Font(font_path + VCR_OSD_MONO_1, round(Res.Manager.Scale.Val(20)))
-        except:
-            font_path = "./../fonts/"
-            self.debug = pygame.font.Font(font_path + VCR_OSD_MONO_1, round(Res.Manager.Scale.Val(20)))
-        self.title = pygame.font.Font(font_path + ARIALBD, round(Res.Manager.Scale.Val(100)))
-        print(self.title.size("Hello world"))
-        self.button = pygame.font.Font(font_path + ARIALBD, round(Res.Manager.Scale.Val(60)))
 
 class MenusStruct():
     def __init__(self):
@@ -46,17 +34,16 @@ class MenuManager():
         return (state)
 
 class GameClass():
-    def __init__(self, pygame, width, height):
-        self.pygame = pygame
+    def __init__(self, pygame_class, width, height):
+        self.pygame: pygame = pygame_class
         self.launched = True
         self.ws = None
         self.fps = FpsClass()
         self.speed = 1
         self.Menu = MenuManager()
-        self.Mouse = MouseClass(self.pygame)
-        self.Keyboard = KeyboardClass(self.pygame)
+        self.Mouse = MouseClass(self.pygame.mouse)
+        self.Keyboard = KeyboardClass(self.pygame.key)
         self.Res = ResolutionClass(width, height)
-        self.Fonts = FontStruct(self.pygame, self.Res)
         self.pause = False
         self.Bloc = BlocClass(self.Res)
         self.Player = PlayerClass(self.Res)

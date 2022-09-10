@@ -7,9 +7,9 @@ Copyright (c) 2022
 # from include.buttons import butt
 # from tools.is_positive import *
 from include.colors import *
-from include.struct import AreaStruct, SpaceStruct
-from src.mouse import MouseClass
-from src.buttons.button_style import BUTTON_STYLES
+from include.objects import AreaObject, SpaceObject
+from src.input_devices.mouse import MouseClass
+from src.responsive_object.object_type.button_styles import BUTTON_STYLES
 
 class ButtonClass():
     def __init__(self,
@@ -22,8 +22,8 @@ class ButtonClass():
         self.text: str = ""
         self.rendered_text = None
         self.scale_hitbox_to_text = False
-        self.area: AreaStruct = AreaStruct()
-        self.space: SpaceStruct = SpaceStruct()
+        self.area: AreaObject = AreaObject()
+        self.space: SpaceObject = SpaceObject()
         self.ChangeAreaValue(x, y, w, h)
         self.style = None
         self.style = BUTTON_STYLES[0]

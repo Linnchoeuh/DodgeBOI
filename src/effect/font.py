@@ -6,11 +6,10 @@ Game element
 
 from include.colors import *
 import pygame.font
-from pygame.surface import Surface
+import pygame.surface
 from os.path import join, dirname
 
 FONT_PATH = join(dirname(__file__), "../../fonts/")
-# FONT_PATH = "/home/lenny/Bureau/projets/perso/python/DodgeBOI/fonts/"
 
 
 if (not pygame.font.get_init()):
@@ -25,7 +24,7 @@ class Font():
         self.antialiasing_default: bool = True
         self.color_default: bool = WHITE
 
-        self.rendered_font: Surface = None
+        self.rendered_text: pygame.surface.Surface = None
 
     def LoadFontSize(self,
                      font_size: int) -> pygame.font.Font:
@@ -42,10 +41,17 @@ class Font():
         self.LoadFontSize(font_size)
         if (font_antialiasing == None):
             font_antialiasing = self.antialiasing_default
-        self.rendered_font = self.loaded_font.render(text,
+        self.rendered_text = self.loaded_font.render(text,
                                                      font_antialiasing,
                                                      font_color,
                                                      font_back_color)
-        return self.rendered_font
+        return self.rendered_text
+
+    def RenderedTextSize(self) -> list[int]:
+        if (self.rendered_text == None):
+            return (0, 0)
+        return (self.rendered_text.get_width(),
+                self.rendered_text.get_height())
+
 
 

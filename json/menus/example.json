@@ -1,0 +1,49 @@
+{
+	"type": "button",
+	"name": "play",
+
+	"style_id": 0,
+
+	"text": "Play",
+	"font": "arialbd.ttf",
+	"font_size": 50,
+	"color": [255,255,255],
+
+	"position_data": {
+		"coords": {
+			"x": 0,
+			"x_max": null,
+			"x_min": null,
+			"x_reverse": false,
+			"y": 0,
+			"y_max": null,
+			"y_min": null,
+			"y_reverse": false
+		},
+		"size": {
+			"w": "50%",
+			"w_max": null,
+			"w_min": null,
+			"h": "50%",
+			"h_max": null,
+			"h_min": null
+		},
+		"offset": {
+			"x": 0,
+			"x_max": null,
+			"x_min": null,
+			"y": 0,
+			"y_max": null,
+			"y_min": null
+		},
+		"scale": {
+			"global": 1,
+			"x": 1,
+			"x_max": null,
+			"x_min": null,
+			"y": 2,
+			"y_max": null,
+			"y_min": null
+		}
+	}
+}
