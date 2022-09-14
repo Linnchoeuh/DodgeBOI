@@ -6,20 +6,19 @@ Copyright (c) 2022
 """
 
 from pygame import K_ESCAPE
-from include.buttons import *
 from src.tools.draw_rect_alpha import *
 base_offset = 150
 
-ResumeButton = ButtonClass(0, 0, 0, 0)
-ResumeButton.text = "Resume"
-BackButton = ButtonClass(0, 0, 0, 0)
-BackButton.text = "Back to main menu"
+# ResumeButton = ButtonClass(0, 0, 0, 0)
+# ResumeButton.text = "Resume"
+# BackButton = ButtonClass(0, 0, 0, 0)
+# BackButton.text = "Back to main menu"
 
 MAX_SPEED = 2.5
 
 def pause_menu(Game):
-    ResumeButton.ChangeAreaValue(base_offset + 25, base_offset + 220, 240, 75, Game.Res)
-    BackButton.ChangeAreaValue(base_offset + 25, base_offset + 320, 550, 75, Game.Res)
+    # ResumeButton.ChangeAreaValue(base_offset + 25, base_offset + 220, 240, 75, Game.Res)
+    # BackButton.ChangeAreaValue(base_offset + 25, base_offset + 320, 550, 75, Game.Res)
     if (Game.Keyboard.KeyOncePressed(K_ESCAPE)):
         if (Game.pause):
             Game.pause = False
@@ -35,10 +34,12 @@ def pause_menu(Game):
         offset = Game.Res.Manager.Scale.Val(base_offset + 25)
         pos = Game.Res.Manager.Scale.Pos((Game.Res.current[0] - 330) / 2, offset)
         Game.ws.blit(title_text, pos)
+        """
         if (ResumeButton.Style1(Game, Game.Fonts.button)):
             Game.pause = False
         if (BackButton.Style1(Game, Game.Fonts.button)):
             Game.Menu.curr = Game.Menu.MENUS.MAIN
+        """
 
 def game_menu(Game):
     if (Game.Menu.Changed()):

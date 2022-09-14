@@ -32,7 +32,8 @@ Game = GameClass(pygame, 1280, 720)
 
 Transition = TransitionClass(Game)
 clock = pygame.time.Clock()
-Game.ws = pygame.display.set_mode(Game.Res.current, pygame.RESIZABLE | pygame.HWSURFACE | pygame.DOUBLEBUF)
+Game.Screen.ws = pygame.display.set_mode(Game.Screen.win_res.current,
+                                         pygame.RESIZABLE | pygame.HWSURFACE | pygame.DOUBLEBUF)
 
 def menu_Interaction(Game):
     match Game.Menu.curr:
@@ -49,14 +50,15 @@ while Game.launched: #Pour fermer la fenêtre
     for event in pygame.event.get():
         if (event.type == pygame.QUIT):
             Game.launched = False
-    Game.Res.current = [Game.ws.get_width(), Game.ws.get_height()]
-    Game.ws.fill(DARKER_GREY)
+    Game.Screen.ToggleFullscreen(Game.Keyboard, K_F11)
+    Game.Screen.ResolutionChangerChecker()
+    Game.Screen.ws.fill(DARKER_GREY)
     Game.Mouse.updateStatus()
     Game.Keyboard.updateStatus()
-    # Game.Res.Manager.ToggleFullscreen(Game.Keyboard, Game, K_F11)
     menu_Interaction(Game)
     Game.Menu.curr = Transition.Check(Game)
     Game.speed = Game.fps.update_fps(clock)
-    Game.fps.show_fps(Game.ws, Game.Res.Manager.Scale.Pos(5, 5))
+    Game.fps.show_fps(Game.Screen.ws, Game.Screen.Scaler.Pos(5, 5))
     pygame.display.flip()
 
+pygame.display.quit()

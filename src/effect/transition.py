@@ -2,12 +2,11 @@
 transition.py
 Lenny Vigeon (lenny.vigeon@gmail.com)
 Transition effect
-Copyright (c) 2022
 """
 
 from include.colors import *
 
-WAIT_TIME = 0.5
+WAIT_TIME = 0.0
 
 class TransitionClass():
     def __init__(self, Game):
@@ -18,7 +17,7 @@ class TransitionClass():
         self.transition_speed = 0.1
         self.wait = 0
         self.state = 0
-        self.rect_size = (Game.Res.current[0], Game.Res.current[1])
+        self.rect_size = (Game.Screen.win_res.current[0], Game.Screen.win_res.current[1])
 
     def Check(self, Game):
         if (Game.speed == 0):
@@ -49,10 +48,10 @@ class TransitionClass():
                         self.state = 0
                         Game.Keyboard.disable = False
                         Game.Mouse.disable = False
-            round_progress = round(self.progression * Game.Res.current[0])
+            round_progress = round(self.progression * Game.Screen.win_res.current[0])
             self.rect = Game.pygame.Rect(round_progress, 0,
                                          self.rect_size[0], self.rect_size[1])
-            Game.pygame.draw.rect(Game.ws, self.black_color, self.rect)
+            Game.pygame.draw.rect(Game.Screen.ws, self.black_color, self.rect)
             return (self.prev_menu)
         self.prev_menu = self.current_menu
         return (self.current_menu)

@@ -60,7 +60,6 @@ class ResponsiveObjectArray():
     def CheckResolution(self,
                         resolution: list[2]) -> None:
         if (self.res != resolution):
-            print(f"Resolution changed! {self.res} -> {resolution}")
             self.SetResolution(resolution)
             i: int = 0
             while (i < len(self.array)):
@@ -83,6 +82,5 @@ class ResponsiveObjectArray():
                                                         self.array[i].object.pressed,
                                                         self.array[i].object.clicked)
             i += 1
-        print(self.button_dict)
         return self.button_dict
 

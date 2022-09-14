@@ -4,7 +4,7 @@ Lenny Vigeon (lenny.vigeon@gmail.com)
 Game element
 """
 
-from src.tools.resolution_manager import HEIGHT
+from include.output_devices import *
 import random
 import pygame
 
@@ -22,11 +22,12 @@ class PlayerActionStruct():
         self.color = random.randint(0, P_YELLOW)
 
 class PlayerClass():
-    def __init__(self, Res):
-        split_pos = Res.current[HEIGHT] / 6
+    def __init__(self,
+                 Screen: ScreenClass):
+        split_pos = Screen.current_res[HEIGHT] / 6
         self.snap_pos = 1
-        self.x = Res.Manager.Scale.Val(100)
-        self.y = Res.Manager.Scale.Val(split_pos * 3)
+        self.x = Screen.Scaler.Val(100)
+        self.y = Screen.Scaler.Val(split_pos * 3)
         self.coords_pos = ((self.x, split_pos),
                            (self.x, self.y),
                            (self.x, split_pos * 5))

@@ -27,11 +27,11 @@ ResponsiveArray: ResponsiveObjectArray = ResponsiveObjectArray()
 
 def main_menu(Game):
     if (Game.Menu.Changed()):
-        ResponsiveArray.ws = Game.ws
-        ResponsiveArray.SetResolution(Game.Res.current)
+        ResponsiveArray.ws = Game.Screen.ws
+        ResponsiveArray.SetResolution(Game.Screen.win_res.current)
         ResponsiveArray.LoadConfigFile("./json/menus/main_menu.json")
         Game.pause = False
-    ResponsiveArray.CheckResolution(Game.Res.current)
+    ResponsiveArray.CheckResolution(Game.Screen.win_res.current)
     ResponsiveArray.DisplayObjects(Game.Mouse, Game.speed)
     buttons: dict = ResponsiveArray.ReturnButtonStatus()
 

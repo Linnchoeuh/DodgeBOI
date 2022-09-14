@@ -2,13 +2,13 @@
 map_generator.py
 Lenny Vigeon (lenny.vigeon@gmail.com)
 Where the map is created
-Copyright (c) 2022
 """
 
-from src.tools.resolution_manager import WIDTH, HEIGHT
 import pygame
 import time
 import random
+
+from include.output_devices import *
 
 BID_VOID = 0
 BID_FULL = 1
@@ -63,13 +63,14 @@ SHAPES = [
 ]
 
 class BlocClass():
-    def __init__(self, Res):
+    def __init__(self,
+                 Screen: ScreenClass):
         self.speed = 1
-        self.separation = Res.Manager.Scale.Val(60)
-        self.tier = Res.current[HEIGHT] / 3
+        self.separation = Screen.Scaler.Val(60)
+        self.tier = Screen.current_res[HEIGHT] / 3
         self.size = self.tier - self.separation
-        self.linewidth = Res.Manager.Scale.Val(5)
-        self.start_point = Res.current[WIDTH] + self.size
+        self.linewidth = Screen.Scaler.Val(5)
+        self.start_point = Screen.current_res[WIDTH] + self.size
         self.end_point = -self.size
         self.obstacle = []
         self.shapes = SHAPES
